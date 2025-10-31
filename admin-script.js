@@ -52,7 +52,7 @@ if (loginBtn) {
     const { error } = await client.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: window.location.origin + '/admin.html'
+        emailRedirectTo: window.location.origin + '/'
       }
     });
     if (error) {
