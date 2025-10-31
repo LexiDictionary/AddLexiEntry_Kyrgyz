@@ -3,17 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LexiKyrgyz Admin — Add Lemma</title>
+  <title>LexiKyrgyz Admin</title>
   <link rel="stylesheet" href="admin-style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .auth-container {
+      max-width: 500px;
+      margin: 4rem auto;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+    }
+    .auth-container h2 {
+      color: #B71F28;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    .auth-container p {
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+    }
+    #email {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-sizing: border-box;
+    }
+    #login-btn {
+      background: #B71F28;
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #login-btn:hover {
+      background: #9A1A22;
+    }
+    #auth-msg {
+      margin-top: 1.2rem;
+      min-height: 1.5rem;
+      font-weight: 500;
+    }
+    .success { color: #2B6CB0; }
+    .error { color: #E53E3E; }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div id="auth-screen" class="auth-container">
+    <h2>LexiKyrgyz Admin</h2>
+    <p>Enter your email to receive a secure login link.</p>
+    <input type="email" id="email" placeholder="your.email@example.com" autocomplete="email" />
+    <button id="login-btn">Send Login Link</button>
+    <p id="auth-msg"></p>
+  </div>
+
+  <div id="app" style="display:none;">
     <h1>Add Kyrgyz Lemma</h1>
     <p class="subtitle">Kyrgyz → English dictionary entry</p>
 
     <form id="form">
-      <!-- Canonical & Pronunciation -->
       <div class="grid">
         <div class="field">
           <label>Canonical (Kyrgyz) <span class="req">*</span></label>
@@ -25,7 +83,6 @@
         </div>
       </div>
 
-      <!-- CEFR -->
       <div class="field">
         <label>CEFR Level</label>
         <select id="cefr">
@@ -35,7 +92,6 @@
         </select>
       </div>
 
-      <!-- Word Forms -->
       <div class="field">
         <label>Inflected Forms (comma-separated)</label>
         <input id="forms" placeholder="колду, колдор" />
@@ -43,7 +99,6 @@
 
       <hr class="divider">
 
-      <!-- Senses -->
       <div id="senses">
         <div class="sense" data-id="1">
           <h2>Sense 1</h2>
@@ -77,13 +132,11 @@
             <textarea class="trans" required rows="2" placeholder="e.g. hand"></textarea>
           </div>
 
-          <!-- Grammar as JSON/text -->
           <div class="field">
             <label>Grammar (JSON or plain text)</label>
             <textarea class="grammar-text" rows="4" placeholder='{"nominative": "кол", "accusative": "колду", "plural": "колдор"}'></textarea>
           </div>
 
-          <!-- Examples (at least one required) -->
           <div class="field">
             <label>Examples <span class="req">*</span></label>
             <div class="list ex-list">
@@ -96,7 +149,6 @@
             <button type="button" class="add add-ex">+ Add Another Example</button>
           </div>
 
-          <!-- Related -->
           <div class="field">
             <label>Related Words</label>
             <div class="list rel-list">
@@ -125,7 +177,6 @@
   </div>
 
   <script>
-    // 🔑 Supabase credentials for LexiKyrgyz
     const SUPABASE_URL = 'https://jvizodlmiiisubatqykg.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2aXpvZGxtaWlpc3ViYXRxeWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2NjYxNTYsImV4cCI6MjA3NzI0MjE1Nn0.YD9tMUyQVq7v5gkWq-f_sQfYfD2raq_o7FeOmLjeN7I';
   </script>
