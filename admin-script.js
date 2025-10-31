@@ -14,7 +14,7 @@ let senseId = 1;
 const MAX_SENSES = 6;
 
 async function checkSession() {
-  const { data: { session } } = await client.auth.getSession();
+  const {  { session } } = await client.auth.getSession();
   if (!session) {
     authScreen.style.display = 'flex';
     app.style.display = 'none';
@@ -22,7 +22,7 @@ async function checkSession() {
   }
 
   const userEmail = session.user.email;
-  const { data: admin, error } = await client
+  const {  admin, error } = await client
     .from('admins')
     .select('email')
     .eq('email', userEmail)
@@ -40,6 +40,15 @@ async function checkSession() {
     initApp();
   }
 }
+
+// Handle auth state changes properly
+client.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
+    checkSession();
+  }
+});
+
+setTimeout(checkSession, 500);
 
 if (loginBtn) {
   loginBtn.addEventListener('click', async () => {
@@ -139,7 +148,7 @@ function initApp() {
     const canon = document.getElementById('canon').value.trim();
     if (!canon) return showMessage('Canonical form is required.', 'error'), btn.disabled = false;
 
-    const { data: exists } = await client.from('lemmas').select('id').eq('canonical', canon);
+    const {  exists } = await client.from('lemmas').select('id').eq('canonical', canon);
     if (exists?.length) return showMessage('Lemma already exists.', 'error'), btn.disabled = false;
 
     try {
@@ -147,7 +156,7 @@ function initApp() {
       const forms = formsInput ? formsInput.split(',').map(s => s.trim()).filter(Boolean) : [];
       const cefr = document.getElementById('cefr').value || null;
 
-      const { data: lemma } = await client
+      const {  lemma } = await client
         .from('lemmas')
         .insert({ canonical: canon, pronunciation: document.getElementById('pron').value.trim(), cefr })
         .select()
@@ -188,7 +197,7 @@ function initApp() {
           }
         }
 
-        const { data: sense } = await client
+        const {  sense } = await client
           .from('senses')
           .insert({
             lemma_id: lemma.id,
@@ -229,5 +238,3 @@ function initApp() {
     }
   });
 }
-
-checkSession();
