@@ -52,7 +52,7 @@ if (loginBtn) {
     const { error } = await client.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: window.location.origin + '/'
+        emailRedirectTo: window.location.origin + 'https://lexidictionary.github.io/AddLexiEntry_Kyrgyz/'
       }
     });
     if (error) {
