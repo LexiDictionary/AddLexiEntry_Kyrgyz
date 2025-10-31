@@ -41,15 +41,6 @@ async function checkSession() {
   }
 }
 
-// Handle auth state changes properly
-client.auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
-    checkSession();
-  }
-});
-
-setTimeout(checkSession, 500);
-
 if (loginBtn) {
   loginBtn.addEventListener('click', async () => {
     const email = emailInput?.value.trim();
@@ -238,3 +229,7 @@ function initApp() {
     }
   });
 }
+
+setTimeout(() => {
+  checkSession();
+}, 800);
