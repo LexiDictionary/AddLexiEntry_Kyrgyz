@@ -14,7 +14,7 @@ let senseId = 1;
 const MAX_SENSES = 6;
 
 async function checkSession() {
-  const {  { session } } = await client.auth.getSession();
+  const { data: { session } } = await client.auth.getSession();
   if (!session) {
     authScreen.style.display = 'flex';
     app.style.display = 'none';
@@ -22,7 +22,7 @@ async function checkSession() {
   }
 
   const userEmail = session.user.email;
-  const {  admin, error } = await client
+  const { data: admin, error } = await client
     .from('admins')
     .select('email')
     .eq('email', userEmail)
@@ -40,6 +40,8 @@ async function checkSession() {
     initApp();
   }
 }
+
+checkSession();
 
 if (loginBtn) {
   loginBtn.addEventListener('click', async () => {
@@ -139,7 +141,7 @@ function initApp() {
     const canon = document.getElementById('canon').value.trim();
     if (!canon) return showMessage('Canonical form is required.', 'error'), btn.disabled = false;
 
-    const {  exists } = await client.from('lemmas').select('id').eq('canonical', canon);
+    const { data: exists } = await client.from('lemmas').select('id').eq('canonical', canon);
     if (exists?.length) return showMessage('Lemma already exists.', 'error'), btn.disabled = false;
 
     try {
@@ -147,7 +149,7 @@ function initApp() {
       const forms = formsInput ? formsInput.split(',').map(s => s.trim()).filter(Boolean) : [];
       const cefr = document.getElementById('cefr').value || null;
 
-      const {  lemma } = await client
+      const { data: lemma } = await client
         .from('lemmas')
         .insert({ canonical: canon, pronunciation: document.getElementById('pron').value.trim(), cefr })
         .select()
@@ -188,7 +190,7 @@ function initApp() {
           }
         }
 
-        const {  sense } = await client
+        const { data: sense } = await client
           .from('senses')
           .insert({
             lemma_id: lemma.id,
@@ -229,7 +231,3 @@ function initApp() {
     }
   });
 }
-
-setTimeout(() => {
-  checkSession();
-}, 800);
