@@ -231,3 +231,8 @@ function initApp() {
     }
   });
 }
+
+document.getElementById('signout-btn')?.addEventListener('click', async () => {
+  await client.auth.signOut();
+  location.reload();
+});
