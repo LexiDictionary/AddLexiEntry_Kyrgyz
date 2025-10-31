@@ -6,65 +6,16 @@
   <title>LexiKyrgyz Admin</title>
   <link rel="stylesheet" href="admin-style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    .auth-container {
-      max-width: 500px;
-      margin: 4rem auto;
-      padding: 2.5rem;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      font-family: 'Inter', sans-serif;
-      text-align: center;
-    }
-    .auth-container h2 {
-      color: #B71F28;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-    }
-    .auth-container p {
-      color: #4a5568;
-      margin-bottom: 1.5rem;
-    }
-    #email {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      font-size: 1rem;
-      border: 1px solid #cbd5e0;
-      border-radius: 12px;
-      margin: 1rem 0;
-      box-sizing: border-box;
-    }
-    #login-btn {
-      background: #B71F28;
-      color: white;
-      border: none;
-      padding: 0.9rem 2rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #login-btn:hover {
-      background: #9A1A22;
-    }
-    #auth-msg {
-      margin-top: 1.2rem;
-      min-height: 1.5rem;
-      font-weight: 500;
-    }
-    .success { color: #2B6CB0; }
-    .error { color: #E53E3E; }
-  </style>
 </head>
 <body>
-  <div id="auth-screen" class="auth-container">
-    <h2>LexiKyrgyz Admin</h2>
-    <p>Enter your email to receive a secure login link.</p>
-    <input type="email" id="email" placeholder="your.email@example.com" autocomplete="email" />
-    <button id="login-btn">Send Login Link</button>
-    <p id="auth-msg"></p>
+  <div id="auth-screen">
+    <div class="auth-box">
+      <h2>LexiKyrgyz Admin</h2>
+      <p>Enter your email to receive a secure login link.</p>
+      <input type="email" id="email" placeholder="your.email@example.com" autocomplete="email" />
+      <button id="login-btn">Send Login Link</button>
+      <p id="auth-msg"></p>
+    </div>
   </div>
 
   <div id="app" style="display:none;">
