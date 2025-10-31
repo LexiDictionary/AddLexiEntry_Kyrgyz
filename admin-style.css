@@ -10,13 +10,13 @@ body {
   padding: 1.5rem;
 }
 
-/* Auth Screen */
-.auth-container {
+#auth-screen {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
 .auth-box {
   background: white;
   padding: 2.5rem;
@@ -60,10 +60,12 @@ body {
 #auth-msg {
   margin-top: 1rem;
   font-weight: 600;
+  min-height: 1.5rem;
 }
+.success { color: #2B6CB0; }
+.error { color: #E53E3E; }
 
-/* Main App */
-.container {
+#app {
   max-width: 900px;
   margin: 2rem auto;
   padding: 2.5rem;
@@ -225,6 +227,6 @@ button:hover { transform: translateY(-1px); }
 @media (max-width: 768px) {
   .grid { grid-template-columns: 1fr; }
   .sense { padding: 1.5rem; }
-  .container { padding: 1.8rem; }
+  #app { padding: 1.8rem; }
   .auth-box { padding: 1.8rem; }
 }
