@@ -10,6 +10,58 @@ body {
   padding: 1.5rem;
 }
 
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.auth-box {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+}
+.auth-box h2 {
+  color: #B71F28;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+.auth-box p {
+  margin-bottom: 1.5rem;
+  color: #4a5568;
+}
+#email {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+#login-btn {
+  background: #B71F28;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.05rem;
+}
+#login-btn:hover {
+  background: #9A1A22;
+}
+#auth-msg {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* Main App */
 .container {
   max-width: 900px;
   margin: 2rem auto;
@@ -173,4 +225,5 @@ button:hover { transform: translateY(-1px); }
   .grid { grid-template-columns: 1fr; }
   .sense { padding: 1.5rem; }
   .container { padding: 1.8rem; }
+  .auth-box { padding: 1.8rem; }
 }
